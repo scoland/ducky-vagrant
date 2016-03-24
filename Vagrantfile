@@ -68,10 +68,15 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+
   config.vm.network :private_network, ip: "192.168.68.8"
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 1935, host: 1935
 
   config.vm.provision :shell, :path => ".provision/bootstrap.sh"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
 
 end
